@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="rating" content="adult" />
+    <meta name="referrer" content="no-referrer" />
+    <meta property="og:site_name" content="Image Serenity" />
+    <meta property="og:title" content="Image Serenity - Anime Image Board" />
+    <meta name="twitter:title" content="Image Serenity - Anime Image Board" />
+    <meta
+      name="description"
+      content="Image Serenity is a website that selects anime and photos"
+    />
+    <meta
+      property="og:description"
+      content="Image Serenity is a website that selects anime and photos"
+    />
+    <meta
+      name="twitter:description"
+      content="Image Serenity is a website that selects anime and photos"
+    />
+    <meta name="keywords" content="picture,image,bilibili,anime" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes"
+    />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta
+      content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+      name="robots"
+    />
+    <meta content="#333" name="theme-color" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="android-chrome-256x256.png" />
+    <link
+      rel="canonical"
+      href="https://github.com/bilibili-tool/image-serenity"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/script.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-F72LVLBFN4"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-F72LVLBFN4");
+    </script>
+    <title>Image Serenity - Anime Image Board</title>
+  </head>
+  <body>
+    <!-- header -->
+    <div class="header">
+      <h1>Image Serenity</h1>
+      <label class="switch">
+        <input id="toggleMode" type="checkbox" />
+        <span class="slider round"></span>
+        <span class="mode-label" id="darkMode">Dark Mode</span>
+      </label>
+    </div>
+    <!-- navagation -->
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <a
+              href="https://bilibili-tool.github.io/image-serenity/"
+              id="homeLink"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a href="https://twitter.com/Seiriryu" id="aboutLink">About</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <!-- search area -->
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search Image..." />
+      <button id="searchButton">Search</button>
+    </div>
+    <!-- image area -->
+    <div class="image-gallery"></div>
+    <!-- page area -->
+    <div class="pagination-container">
+      <button id="firstPage">First Page</button>
+      <button id="prevPage">Previous Page</button>
+      <span>
+        <div id="currentPage" contenteditable="true">1</div>
+        /
+        <div id="totalpage">1</div>
+      </span>
+      <button id="nextPage">Next Page</button>
+      <button id="lastPage">Last Page</button>
+    </div>
+    <!-- footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2023 Image Serenity All Rights Reserved</p>
+        <p>
+          <a href="#">Privacy Policy</a> |
+          <a href="https://twitter.com/Seiriryu" id="aboutLink">About Us</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
