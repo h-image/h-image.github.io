@@ -33,18 +33,18 @@ document.addEventListener("DOMContentLoaded", async function () {
       loadingElement.style.display = "block";
       //创建link
       const alink = document.createElement("a");
-      alink.href = el.src;
+      alink.href = el.url;
       alink.target = "_blank";
       alink.rel = "noopener noreferrer";
 
       // 创建图片元素
       const img = new Image();
-      img.alt = el.description || el.title;
-      img.title = el.description || el.title;
+      img.alt = el.title;
+      img.title = el.title;
       img.height = 400;
       // 显示图片
-      img.src = el.src;
-      loadImage(el.src, function () {
+      img.src = el.url;
+      loadImage(el.url, function () {
         // 隐藏 loading 元素
         loadingElement.style.display = "none";
       });
