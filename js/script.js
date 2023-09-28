@@ -141,8 +141,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       currentImages = imageData.filter(
         (item) =>
           item.title.toLowerCase().includes(searchTerm) ||
-          item.description.toLowerCase().includes(searchTerm) ||
-          item.author_id.toLowerCase().includes(searchTerm)
+          item.id.toLowerCase().includes(searchTerm)
       );
     }
     totalPages = Math.ceil(currentImages.length / itemsPerPage);
