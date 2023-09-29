@@ -9,7 +9,7 @@ body {
 }
 
 .header {
-  background-color: #333; /* 设置深灰色背景色 */
+  background-color: #dd5e36; /* 设置深灰色背景色 */
   color: #fff; /* 设置白色文本颜色 */
   display: flex;
   justify-content: space-between;
@@ -20,7 +20,7 @@ body {
 }
 
 header {
-  background-color: #333; /* 设置深灰色背景色 */
+  background-color: #dd5e36; /* 设置深灰色背景色 */
   color: #fff; /* 设置白色文本颜色 */
   padding: 20px;
   display: flex;
@@ -87,7 +87,7 @@ input:checked + .slider:before {
 }
 
 button {
-  background-color: #333;
+  background-color: #dd5e36;
   color: #fff; /* 设置白色按钮文本颜色 */
   border: none;
   cursor: pointer;
@@ -112,7 +112,7 @@ input[type="text"] {
 }
 
 button#searchButton {
-  background-color: #333;
+  background-color: #dd5e36;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -166,28 +166,29 @@ button#searchButton {
 /* 夜间模式样式 */
 .night-mode {
   background-color: #222;
-  color: #fff;
+  color: #ddd;
+}
+
+.night-mode .header {
+  background-color: #333;
+  color: #ddd !important;
 }
 
 .night-mode header {
   background-color: #333;
-  color: #fff;
+  color: #ddd !important;
 }
 
 .night-mode button {
-  background-color: #333;
-  color: #fff;
+  background-color: #333 !important;
+  color: #ddd !important;
   border-color: #fff;
 }
 
 .night-mode input[type="text"] {
   background-color: #444;
-  color: #fff;
-  border-color: #fff;
-}
-
-.night-mode .search-container input[type="text"]::placeholder {
-  color: #ccc;
+  color: #ddd !important;
+  border-color: #fff !important;
 }
 
 /* .night-mode .image-item img {
@@ -195,14 +196,31 @@ button#searchButton {
 } */
 
 .night-mode .pagination-container button {
-  color: #fff;
+  color: #ddd !important;
+}
+
+.night-mode .search-container input[type="text"]::placeholder {
+  color: #ccc !important;
+}
+
+.night-mode footer {
+  background-color: #333 !important;
+  color: #ddd !important;
+}
+
+.night-mode a {
+  color: #ddd !important;
+}
+
+.night-mode body {
+  color: #ddd !important;
 }
 
 /* 修改footer颜色 */
 footer {
   text-align: center;
   padding: 10px 0;
-  background-color: #333;
+  background-color: #dd5e36;
   color: #fff;
   font-size: 14px;
 }
@@ -222,7 +240,7 @@ header nav li {
 
 header nav a {
   text-decoration: none;
-  color: #fff;
+  color: #ddd;
   font-weight: bold;
   transition: color 0.3s;
 }
