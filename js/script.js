@@ -169,6 +169,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   // 加载更多按钮点击事件
   const loadMoreBtn = document.getElementById("loadMoreBtn");
   loadMoreBtn.addEventListener("click", function () {
+    mobileCurrentPage++;
     const startIndex = (mobileCurrentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const pageImages = currentImages.slice(startIndex, endIndex);
