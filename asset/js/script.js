@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       const img = new Image();
       img.alt = el.title;
       img.title = el.title;
-      img.height = 400;
       // 显示图片
       img.src = el.url;
       loadImage(el.url, function () {
@@ -63,13 +62,13 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   // 切换夜间模式和白天模式
-  const toggleMode = document.querySelector(".icon");
-  toggleMode.addEventListener("click", function () {
+  const modeIcon = document.querySelector(".icon");
+  modeIcon.addEventListener("click", function () {
     document.body.classList.toggle("night-mode");
     if (document.body.classList.contains("night-mode")) {
-      icon.src = "asset/images/sun.png";
+      modeIcon.src = "asset/icons/sun.png";
     } else {
-      icon.src = "asset/images/moon.png";
+      modeIcon.src = "asset/icons/moon.png";
     }
   });
 
@@ -226,7 +225,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   });
 
-  // await loadLanguage();
+  await loadLanguage();
   // 初始化显示图片
   displayImages(1);
 });
@@ -251,22 +250,8 @@ function toggleNightMode() {
  */
 async function loadPicture() {
   try {
-    // const response = await fetch(`raw/datas.json`);
-    // const datas = await response.json();
-    const datas = [
-      {
-        id: "45715",
-        title:
-          "fine_(futagohime) highres kuronekoanimemixv10 navel non-web_source tagme rating:g score:0",
-        url: "https://cdn.aibooru.space/720x720/79/79/79791f223677799503f47133219a38bf.webp",
-      },
-      {
-        id: "45714",
-        title:
-          "1girl absurdres alternate_costume armpit_crease bare_shoulders black_dress black_headwear boo_tao_(genshin_impact) breasts bright_sky_(user_yhys5775) brown_hair brown_thighhighs cleavage detached_collar dress flower frilled_dress frills garter_straps genshin_impact grin hands_up hat hat_flower highres holding hu_tao_(genshin_impact) large_breasts long_hair long_sleeves looking_at_viewer no_bra no_panties no_shoes off-shoulder_dress off_shoulder one_eye_closed pelvic_curtain porkpie_hat red_eyes sidelocks sitting smile solo strapless strapless_dress thighhighs thighs twintails wariza rating:s score:2",
-        url: "https://cdn.aibooru.space/720x720/3b/75/3b75ed49ea2b116992b8151e1c0d2e4e.webp",
-      },
-    ];
+    const response = await fetch(`raw/datas.json`);
+    const datas = await response.json();
     if (!datas) {
       datas = [];
     }
