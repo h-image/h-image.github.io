@@ -197,9 +197,28 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
 
     // 判断是否还有更多图片可以加载，如果没有，隐藏加载更多按钮
-   // if (mobileCurrentPage * itemsPerPage >= pageImages.length) {
-    //  loadMoreBtn.style.display = "none";
-   //}
+    if (itemsPerPage > pageImages.length) {
+      loadMoreBtn.style.display = "none";
+    }
+  });
+
+  // 向上滚动按钮
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+  // 当用户滚动页面时，显示或隐藏返回顶部按钮
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 200) {
+      scrollTopBtn.classList.add("show");
+    } else {
+      scrollTopBtn.classList.remove("show");
+    }
+  });
+
+  // 当用户点击返回顶部按钮时，滚动到页面顶部
+  scrollTopBtn.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // 平滑滚动
+    });
   });
 
   await loadLanguage();
@@ -270,7 +289,6 @@ async function loadLanguage() {
     console.log(e);
   }
 }
-
 
 /**
  * 显示翻页按钮
