@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     mobilePagination.style.display = "block";
   } else {
     const pagination = document.querySelector(".pagination-container");
-    pagination.style.display = "block";
+    pagination.style.display = "display";
     const mobilePagination = document.querySelector(
       ".mobile-pagination-container"
     );
