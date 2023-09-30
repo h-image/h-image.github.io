@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
 /* 基本样式 */
 body {
   font-family: Arial, sans-serif; /* 设置宋体为主字体，然后是 Arial 和 sans-serif 作为备用字体 */
@@ -146,7 +147,7 @@ button#searchButton {
 
 .image-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 20px;
   margin: 15px;
 }
@@ -155,7 +156,7 @@ button#searchButton {
   position: relative;
   overflow: hidden;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
 }
 
 .image-item img {
@@ -306,4 +307,9 @@ footer {
 
 .scroll-top-btn.show {
   display: block;
+}
+
+.icon {
+  width: 30px;
+  cursor: pointer;
 }
