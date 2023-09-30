@@ -28,6 +28,30 @@ header {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* 修改导航菜单样式 */
+header nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+header nav li {
+  margin-right: 20px;
+}
+
+header nav a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+header nav a:hover {
+  color: #ddd;
+}
+
 /* 切换按钮和说明的样式 */
 .switch {
   display: flex;
@@ -92,7 +116,7 @@ button {
   border: none;
   cursor: pointer;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 10px;
   font-weight: bold;
 }
 
@@ -105,7 +129,7 @@ input[type="text"] {
   color: #333; /* 设置黑色输入框文本颜色 */
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
   width: 60%;
   margin-right: 10px;
   font-size: 16px;
@@ -115,7 +139,7 @@ button#searchButton {
   background-color: #dd5e36;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: bold;
 }
@@ -158,7 +182,7 @@ button#searchButton {
   background-color: rgba(0, 0, 0, 0.4);
   color: #fff;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 10px;
   font-size: 1.5rem;
   z-index: 1;
 }
@@ -192,7 +216,7 @@ button#searchButton {
 }
 
 /* .night-mode .image-item img {
-  filter: grayscale(100%) brightness(0.8);
+  filter: grayscale(100%) brightness(0.9);
 } */
 
 .night-mode .pagination-container button {
@@ -214,39 +238,6 @@ button#searchButton {
 
 .night-mode body {
   color: #ddd !important;
-}
-
-/* 修改footer颜色 */
-footer {
-  text-align: center;
-  padding: 10px 0;
-  background-color: #dd5e36;
-  color: #fff;
-  font-size: 14px;
-}
-
-/* 修改导航菜单样式 */
-header nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-}
-
-header nav li {
-  margin-right: 20px;
-}
-
-header nav a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-header nav a:hover {
-  color: #ddd;
 }
 
 /* 翻页按钮居中 */
@@ -279,4 +270,40 @@ header nav a:hover {
   margin: 0 1px;
   border-radius: 3em;
   padding: 10px 10em;
+}
+
+/* 修改footer颜色 */
+footer {
+  text-align: center;
+  padding: 10px 0;
+  background-color: #dd5e36;
+  color: #fff;
+  font-size: 14px;
+}
+
+/* 返回顶部按钮样式 */
+.scroll-top-btn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  border-radius: 25em;
+  background-color: rgb(221, 94, 54, 0.5);
+  color: #fff; /* 按钮文本颜色 */
+  font-size: 16px; /* 文本字体大小 */
+  font-weight: bold; /* 文本加粗 */
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+}
+
+/* 示例悬停效果 */
+.scroll-top-btn:hover {
+  background-color: rgb(221, 94, 54, 0.8);
+  transition: background-color 0.3s ease; /* 添加平滑的过渡效果 */
+}
+
+.scroll-top-btn.show {
+  display: block;
 }
