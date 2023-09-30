@@ -278,7 +278,7 @@ async function loadLanguage() {
   html[0].lang = userLanguage;
   // 加载对应的 JSON 文件
   try {
-    const response = await fetch(`lang/${userLanguage}.json`);
+    const response = await fetch(`asset/lang/${userLanguage}.json`);
     const data = await response.json();
     // 将文本内容应用到页面上
     document.getElementById("homeLink").textContent = data.home;
