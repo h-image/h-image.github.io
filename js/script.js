@@ -1,20 +1,5 @@
 document.addEventListener("DOMContentLoaded", async function () {
-  if (isMobile()) {
-    const pagination = document.querySelector(".pagination-container");
-    pagination.style.display = "none";
-    const mobilePagination = document.querySelector(
-      ".mobile-pagination-container"
-    );
-    mobilePagination.style.display = "block";
-  } else {
-    const pagination = document.querySelector(".pagination-container");
-    pagination.style.display = "display";
-    const mobilePagination = document.querySelector(
-      ".mobile-pagination-container"
-    );
-    mobilePagination.style.display = "none";
-  }
-
+  showPageBtn();
   // 图片数据数组，包含图片路径、标题和类别
   const imageData = await loadPicture();
   //每页显示的件数
@@ -282,6 +267,28 @@ async function loadLanguage() {
     document.getElementById("lastPage").textContent = data.last_page;
   } catch (e) {
     console.log(e);
+  }
+}
+
+
+/**
+ * 显示翻页按钮
+ */
+function showPageBtn() {
+  if (isMobile()) {
+    const pagination = document.querySelector(".pagination-container");
+    pagination.style.display = "none";
+    const mobilePagination = document.querySelector(
+      ".mobile-pagination-container"
+    );
+    mobilePagination.style.display = "block";
+  } else {
+    const pagination = document.querySelector(".pagination-container");
+    pagination.style.display = "flex";
+    const mobilePagination = document.querySelector(
+      ".mobile-pagination-container"
+    );
+    mobilePagination.style.display = "none";
   }
 }
 
