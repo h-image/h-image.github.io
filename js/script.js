@@ -6,6 +6,13 @@ document.addEventListener("DOMContentLoaded", async function () {
       ".mobile-pagination-container"
     );
     mobilePagination.style.display = "block";
+  } else {
+    const pagination = document.querySelector(".pagination-container");
+    pagination.style.display = "block";
+    const mobilePagination = document.querySelector(
+      ".mobile-pagination-container"
+    );
+    mobilePagination.style.display = "none";
   }
 
   // 图片数据数组，包含图片路径、标题和类别
@@ -16,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   let currentImages = imageData ? imageData.slice() : imageData;
   // 总页
   let totalPages = Math.ceil(currentImages.length / itemsPerPage);
-  //手机端当前页面
+  // 移动端当前页面
   let mobileCurrentPage = 1;
   // 根据当前页数显示图片
   function displayImages(currentPage) {
@@ -159,14 +166,49 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
     displayImages(currentPage);
   });
-
-
   // 加载更多按钮点击事件
   const loadMoreBtn = document.getElementById("loadMoreBtn");
   loadMoreBtn.addEventListener("click", function () {
-    mobileCurrentPage++;
+    const startIndex = (mobileCurrentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const pageImages = currentImages.slice(startIndex, endIndex);
 
-    displayImages(mobileCurrentPage);
+    const gallery = document.querySelector(".image-gallery");
+    pageImages.forEach((el) => {
+      //创建图片项容器
+      const imageItem = document.createElement("div");
+      imageItem.classList.add("image-item");
+      // 创建 loading 元素
+      const loadingElement = document.createElement("div");
+      loadingElement.classList.add("image-loading");
+      loadingElement.textContent = "Loading...";
+      loadingElement.style.display = "block";
+      //创建link
+      const alink = document.createElement("a");
+      alink.href = el.url;
+      alink.target = "_blank";
+      alink.rel = "noopener noreferrer";
+
+      // 创建图片元素
+      const img = new Image();
+      img.alt = el.title;
+      img.title = el.title;
+      img.height = 400;
+      // 显示图片
+      img.src = el.url;
+      loadImage(el.url, function () {
+        // 隐藏 loading 元素
+        loadingElement.style.display = "none";
+      });
+      //将图片添加到link
+      alink.appendChild(img);
+      //到图片项容器到图片项容器
+      imageItem.appendChild(alink);
+      // 将 loading 和图片元素添加到图片项容器
+      imageItem.appendChild(loadingElement);
+      //将图片项容器添加到图片显示区域
+      gallery.appendChild(imageItem);
+    });
 
     // 判断是否还有更多图片可以加载，如果没有，隐藏加载更多按钮
     if (mobileCurrentPage * itemsPerPage >= pageImages.length) {
