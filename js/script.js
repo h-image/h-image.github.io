@@ -212,9 +212,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
 
     // 判断是否还有更多图片可以加载，如果没有，隐藏加载更多按钮
-    if (mobileCurrentPage * itemsPerPage >= pageImages.length) {
-      loadMoreBtn.style.display = "none";
-    }
+   // if (mobileCurrentPage * itemsPerPage >= pageImages.length) {
+    //  loadMoreBtn.style.display = "none";
+   //}
   });
 
   await loadLanguage();
