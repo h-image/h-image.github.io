@@ -5,15 +5,19 @@
     <meta name="rating" content="adult" />
     <meta name="referrer" content="no-referrer" />
     <meta property="og:site_name" content="H Image" />
-    <meta property="og:title" content="404 Page Not Found - H Image"  />
-    <meta name="description" content="404 Page Not Found - H Image" />
+    <meta property="og:title" content="H Image - Anime Image Board" />
+    <meta name="twitter:title" content="H Image - Anime Image Board" />
+    <meta
+      name="description"
+      content="H Image is a website that selects anime and photos"
+    />
     <meta
       property="og:description"
-      content="404 Page Not Found - H Image"
+      content="H Image is a website that selects anime and photos"
     />
     <meta
       name="twitter:description"
-      content="404 Page Not Found - H Image"
+      content="H Image is a website that selects anime and photos"
     />
     <meta name="keywords" content="picture,image,bilibili,anime" />
     <meta
@@ -25,20 +29,15 @@
       content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
       name="robots"
     />
-    <meta content="#333" name="theme-color" />
+    <meta content="#dd5e36" name="theme-color" />
     <meta content="telephone=no" name="format-detection" />
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
     <meta content="summary_large_image" name="twitter:card" />
-    <meta content="@Seiriryu" name="twitter:site" />
-    <meta content="@Seiriryu" name="twitter:creator" />
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <link rel="icon" type="image/png" href="android-chrome-256x256.png" />
-    <link
-      rel="canonical"
-      href=""
-    />
-    <link rel="stylesheet" href="asset/css/styles.min.css" />
+    <link rel="canonical" href="h-image.github.io" />
+    <link rel="stylesheet" href="asset/css/styles.css" />
     <!-- Google tag (gtag.js) -->
     <script
       async
@@ -52,25 +51,54 @@
       gtag("js", new Date());
       gtag("config", "G-L7WD4ZV8N1");
     </script>
-    <title>404 Page Not Found</title>
+    <title>H Image - Anime Image Board</title>
   </head>
   <body>
+    <!-- header -->
     <div class="header">
       <img src="logo.png" />
+      <label class="switch">
+        <img src="asset/icons/moon.png" class="icon" />
+      </label>
     </div>
+    <!-- navagation -->
     <header>
       <nav>
         <ul>
-          <li><a href="/" id="homeLink">Home</a></li>
+          <li>
+            <a href="https://h-image.github.io" id="homeLink">Home</a>
+          </li>
           <li>
             <a href="https://twitter.com/aiart_res" id="aboutLink">About</a>
           </li>
         </ul>
       </nav>
     </header>
-    <div class="image-gallery">
-      <h2>404 Page Not Found</h2>
+    <div class="detail-container">
+      <div class="container-row">
+        <img class="detail-img"
+          src="https://cdn.aibooru.download/sample/dc/67/__aris_blue_archive_generated_by_ai_god_exe_using_novelai__sample-dc6701f7ab8c59116990cee2d20757b1.jpg"
+          alt="生成的图片"
+        />
+      </div>
+      <div class="container-row">
+        
+        <h2>AI Metadata</h2>
+        <div class="image-detail">
+          <div>
+            <span>参数1：</span>
+            <span>数值1</span>
+          </div>
+          <div>
+            <span>参数2：</span>
+            <span>数值2</span>
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- 返回顶部按钮 -->
+    <button id="scrollTopBtn" class="scroll-top-btn">&#9650;</button>
+    <!-- footer -->
     <footer>
       <div>
         <p>&copy; 2023 H Image All Rights Reserved</p>
