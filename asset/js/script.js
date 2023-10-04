@@ -164,11 +164,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     );
     const totalPages = Math.ceil(currentImages.length / itemsPerPage);
     if (event.key === "ArrowLeft" && currentPage > 1) {
-      currentPage--;
-      displayImages();
+      displayImages(currentPage - 1);
     } else if (event.key === "ArrowRight" && currentPage < totalPages) {
-      currentPage++;
-      displayImages();
+      displayImages(currentPage + 1);
     }
   });
 
