@@ -309,6 +309,29 @@ footer {
   display: block;
 }
 
+/* 返回顶部按钮样式 */
+.darkmode-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  border-radius: 25em;
+  background-color: rgb(0, 174, 236, 0.5);
+  color: #fff; /* 按钮文本颜色 */
+  font-size: 16px; /* 文本字体大小 */
+  font-weight: bold; /* 文本加粗 */
+  border: none;
+  cursor: pointer;
+  width: 55px;
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+}
+
+/* 示例悬停效果 */
+.darkmode-btn:hover {
+  background-color: rgb(0, 174, 236, 0.8);
+  transition: background-color 0.3s ease; /* 添加平滑的过渡效果 */
+}
+
 .icon {
   width: 30px;
   cursor: pointer;
