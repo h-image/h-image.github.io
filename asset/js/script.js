@@ -67,12 +67,38 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   /**
+   * 更新URL中的page参数
+   */
+  function updateURL(page) {
+    const newUrl = window.location.pathname + "?page=" + page;
+    window.history.pushState({ path: newUrl }, "", newUrl);
+  }
+
+  /**
    * 翻页操作时更新URL
    * @param currentPage 当前的页面
    */
   function displayImagesAndUpdateURL(currentPage) {
     displayImages(currentPage);
     updateURL(currentPage);
+  }
+
+  /**
+   * PC版下的获取当前页面
+   */
+  function getCurrentPage() {
+    // 从URL中获取page参数，如果没有则默认为1
+    const urlParams = new URLSearchParams(window.location.search);
+    let currentPage = parseInt(urlParams.get("page")) || 1;
+    if (isNaN(currentPage)) {
+      currentPage = 1;
+    } else if (currentPage < 1) {
+      currentPage = 1;
+    } else if (currentPage > totalPages) {
+      currentPage = totalPages;
+    }
+
+    return currentPage;
   }
 
   // 切换夜间模式和白天模式
@@ -364,21 +390,4 @@ function isMobile() {
     return true;
   }
   return false;
-}
-
-/**
- * PC版下的获取当前页面
- */
-function getCurrentPage() {
-  // 从URL中获取page参数，如果没有则默认为1
-  const urlParams = new URLSearchParams(window.location.search);
-  return parseInt(urlParams.get("page")) || 1;
-}
-
-/**
- * 更新URL中的page参数
- */
-function updateURL(page) {
-  const newUrl = window.location.pathname + "?page=" + page;
-  window.history.pushState({ path: newUrl }, "", newUrl);
 }
