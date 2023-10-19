@@ -7,7 +7,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   //当前页图片
   let currentImages = imageData ? imageData.slice() : imageData;
   // 总页
-  let totalPages = Math.ceil(currentImages.length / itemsPerPage);
+  let totalPages = Math.ceil(
+    currentImages?.length ? currentImages?.length : 0 / itemsPerPage
+  );
 
   // 移动端当前页面
   let mobileCurrentPage = 1;
@@ -310,7 +312,6 @@ function toggleNightMode() {
  */
 async function loadPicture() {
   try {
-
     const response = await fetch(`raw/datas.json`);
     const datas = await response.json();
     if (!datas) {
