@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", async function () {
    * 更新URL中的page参数
    */
   function updateURL(page) {
-    const newUrl = window.location.pathname + "?page=" + page;
+    const newUrl = window.location.origin + "?page=" + page;
     window.history.pushState({ path: newUrl }, "", newUrl);
   }
 
@@ -310,6 +310,7 @@ function toggleNightMode() {
  */
 async function loadPicture() {
   try {
+
     const response = await fetch(`raw/datas.json`);
     const datas = await response.json();
     if (!datas) {
