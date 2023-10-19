@@ -285,6 +285,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   });
 
+  // 加载语言
   await loadLanguage();
   // 初始化显示图片
   displayImagesAndUpdateURL(getCurrentPage());
@@ -310,12 +311,13 @@ function toggleNightMode() {
  */
 async function loadPicture() {
   try {
-
     const response = await fetch(`raw/datas.json`);
     const datas = await response.json();
     if (!datas) {
       datas = [];
     }
+    //loading非表示
+    document.querySelector(".loader-wrapper").style.display = "none";
     return datas;
   } catch (e) {
     console.log(e);
