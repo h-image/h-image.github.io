@@ -8,9 +8,14 @@ document.addEventListener("DOMContentLoaded", async function () {
   let currentImages = imageData ? imageData.slice() : imageData;
   // 总页
   let totalPages = Math.ceil(currentImages.length / itemsPerPage);
+
   // 移动端当前页面
   let mobileCurrentPage = 1;
-  // 根据当前页数显示图片
+
+  /**
+   *  PC版根据当前页数显示图片
+   * @param {*} currentPage 当前页面
+   */
   function displayImages(currentPage) {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -61,6 +66,15 @@ document.addEventListener("DOMContentLoaded", async function () {
     totalpageElement.textContent = totalPages;
   }
 
+  /**
+   * 翻页操作时更新URL
+   * @param currentPage 当前的页面
+   */
+  function displayImagesAndUpdateURL(currentPage) {
+    displayImages(currentPage);
+    updateURL(currentPage);
+  }
+
   // 切换夜间模式和白天模式
   const darkmode = document.querySelector(".darkmode-btn");
   darkmode.addEventListener("click", function () {
@@ -83,10 +97,13 @@ document.addEventListener("DOMContentLoaded", async function () {
       performSearch();
     }
   });
+
   //检索按钮按下事件
   searchButton.addEventListener("click", performSearch);
 
-  // 检索函数
+  /**
+   * 检索函数
+   */
   function performSearch() {
     const searchTerm = searchInput.value.toLowerCase();
     if (!searchTerm.trim()) {
@@ -94,19 +111,20 @@ document.addEventListener("DOMContentLoaded", async function () {
     } else {
       currentImages = imageData.filter(
         (item) =>
-          item.title.toLowerCase().includes(searchTerm) ||
-          item.id.toLowerCase().includes(searchTerm)
+          item.id?.toLowerCase()?.includes(searchTerm) ||
+          item.title?.toLowerCase()?.includes(searchTerm) ||
+          item.webui_parameters?.toLowerCase()?.includes(searchTerm)
       );
     }
     totalPages = Math.ceil(currentImages.length / itemsPerPage);
     mobileCurrentPage = 1;
-    displayImages(1);
+    displayImagesAndUpdateURL(1);
   }
 
   // 点击第一页按钮
   const firstPageButton = document.getElementById("firstPage");
   firstPageButton.addEventListener("click", function () {
-    displayImages(1);
+    displayImagesAndUpdateURL(1);
   });
 
   // 点击上一页按钮
@@ -117,7 +135,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       document.getElementById("currentPage").textContent
     );
     if (currentPage > 1) {
-      displayImages(currentPage - 1);
+      displayImagesAndUpdateURL(currentPage - 1);
     }
   });
 
@@ -130,14 +148,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     );
     const totalPages = Math.ceil(currentImages.length / itemsPerPage);
     if (currentPage < totalPages) {
-      displayImages(currentPage + 1);
+      displayImagesAndUpdateURL(currentPage + 1);
     }
   });
 
   // 点击最后一页按钮
   const lastPageButton = document.getElementById("lastPage");
   lastPageButton.addEventListener("click", function () {
-    displayImages(totalPages);
+    displayImagesAndUpdateURL(totalPages);
   });
 
   //直接修改页数
@@ -156,7 +174,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     } else if (currentPage > totalPages) {
       currentPage = totalPages;
     }
-    displayImages(currentPage);
+    displayImagesAndUpdateURL(currentPage);
   });
 
   // 监听键盘事件
@@ -166,9 +184,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     );
     const totalPages = Math.ceil(currentImages.length / itemsPerPage);
     if (event.key === "ArrowLeft" && currentPage > 1) {
-      displayImages(currentPage - 1);
+      displayImagesAndUpdateURL(currentPage - 1);
     } else if (event.key === "ArrowRight" && currentPage < totalPages) {
-      displayImages(currentPage + 1);
+      displayImagesAndUpdateURL(currentPage + 1);
     }
   });
 
@@ -243,7 +261,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   await loadLanguage();
   // 初始化显示图片
-  displayImages(1);
+  displayImagesAndUpdateURL(getCurrentPage());
 });
 
 // 创建一个用于加载图片的函数
@@ -346,4 +364,21 @@ function isMobile() {
     return true;
   }
   return false;
+}
+
+/**
+ * PC版下的获取当前页面
+ */
+function getCurrentPage() {
+  // 从URL中获取page参数，如果没有则默认为1
+  const urlParams = new URLSearchParams(window.location.search);
+  return parseInt(urlParams.get("page")) || 1;
+}
+
+/**
+ * 更新URL中的page参数
+ */
+function updateURL(page) {
+  const newUrl = window.location.pathname + "?page=" + page;
+  window.history.pushState({ path: newUrl }, "", newUrl);
 }
