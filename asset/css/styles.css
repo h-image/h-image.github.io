@@ -16,7 +16,7 @@ body {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 10px 20px 0;
+  padding: 10px 20px;
   margin: 0;
 }
 
@@ -116,9 +116,16 @@ button {
   color: #fff; /* 设置白色按钮文本颜色 */
   border: none;
   cursor: pointer;
-  padding: 10px 20px;
+  padding: 10px 10px;
   border-radius: 10px;
   font-weight: bold;
+}
+
+button:active {
+  -webkit-transform: translate(0, 2px);
+  -moz-transform: translate(0, 2px);
+  transform: translate(0, 2px);
+  border-bottom: none;
 }
 
 .search-container {
@@ -131,7 +138,7 @@ input[type="text"] {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  width: 60%;
+  width: 40%;
   margin-right: 10px;
   font-size: 16px;
 }
@@ -270,7 +277,7 @@ button#searchButton {
 .mobile-pagination-container button {
   margin: 0 1px;
   border-radius: 3em;
-  padding: 10px 10em;
+  padding: 15px 10em;
 }
 
 /* 修改footer颜色 */

@@ -266,6 +266,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   });
 
+  // 随机按钮点击事件
+  const randomButton = document.getElementById("randomButton");
+  randomButton.addEventListener("click", function () {
+    window.location.href =
+      "https://h-image.github.io/random.html"; // 返回主页面
+  });
+
   // 向上滚动按钮
   const scrollTopBtn = document.getElementById("scrollTopBtn");
   // 当用户滚动页面时，显示或隐藏返回顶部按钮
@@ -298,11 +305,6 @@ function loadImage(src, callback) {
     callback(img);
   };
   img.src = src;
-}
-
-// 切换夜间模式的函数
-function toggleNightMode() {
-  document.body.classList.toggle("night-mode");
 }
 
 /**
@@ -344,13 +346,12 @@ async function loadLanguage() {
     const response = await fetch(`asset/lang/${userLanguage}.json`);
     const data = await response.json();
     // 将文本内容应用到页面上
-    document.getElementById("homeLink").textContent = data.home;
-    document.getElementById("aboutLink").textContent = data.about;
     document.getElementById("searchButton").textContent = data.search;
     document.getElementById("firstPage").textContent = data.first_page;
     document.getElementById("prevPage").textContent = data.prev_page;
     document.getElementById("nextPage").textContent = data.next_page;
     document.getElementById("lastPage").textContent = data.last_page;
+    document.getElementById("randomButton").textContent = data.random;
   } catch (e) {
     console.log(e);
   }
