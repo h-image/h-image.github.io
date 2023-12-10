@@ -46,6 +46,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         // 隐藏 loading 元素
         loadingElement.style.display = "none";
       };
+      img.onerror = function () {
+        img.src = "./asset/images/default.png";
+      };
       img.alt = el.title;
       img.title = el.title;
       img.src = el.url;
@@ -244,6 +247,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       img.onload = function () {
         // 隐藏 loading 元素
         loadingElement.style.display = "none";
+      };
+      img.onerror = function () {
+        img.src = "./asset/images/default.png";
       };
       img.alt = el.title;
       img.title = el.title;
