@@ -7,10 +7,6 @@ body {
   padding: 0;
 }
 
-h1 {
-  margin: 10px;
-}
-
 @media screen and (max-width: 768px) {
   .header {
     grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)) !important;
@@ -34,6 +30,10 @@ h1 {
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 0;
+}
+
+.header image {
+  margin: 0 10px;
 }
 
 a {
