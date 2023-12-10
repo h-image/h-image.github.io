@@ -33,7 +33,6 @@ h1 {
   grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 10px 20px;
   margin: 0;
 }
 
@@ -149,7 +148,7 @@ input[type="text"] {
 }
 
 .night-mode button {
-  background-color: #333 !important;
+  background-color: #4b4a4a !important;
   color: #ddd !important;
   border-color: #fff;
 }
