@@ -1,18 +1,18 @@
 document.addEventListener("DOMContentLoaded", async function () {
-  // 图片数据数组，包含图片路径、标题和类别
+  // Load image data
   const imageData = await loadPicture();
 
-  // 随机取出10张图片
+  // Randomly select 10 images
   function getRandomImages() {
     const randomImages = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 20; i++) {
       const randomIndex = Math.floor(Math.random() * imageData.length);
       randomImages.push(imageData[randomIndex]);
     }
     return randomImages;
   }
 
-  // 显示随机图片
+  // Display random images
   function showRandomImages() {
     const randomImages = getRandomImages();
     const gallery = document.querySelector(".image-gallery");
@@ -20,52 +20,59 @@ document.addEventListener("DOMContentLoaded", async function () {
       gallery.removeChild(gallery.firstChild);
     }
     randomImages.forEach((el) => {
-      //创建图片项容器
+      // Create image item container
       const imageItem = document.createElement("div");
       imageItem.classList.add("image-item");
-      // 创建 loading 元素
+
+      // Create loading element
       const loadingElement = document.createElement("div");
       loadingElement.classList.add("image-loading");
       loadingElement.textContent = "Loading...";
       loadingElement.style.display = "block";
-      //创建link
+
+      // Create link
       const alink = document.createElement("a");
       alink.href = el.detail_url;
       alink.target = "_blank";
       alink.rel = "noopener noreferrer nofollow";
-      // 创建图片元素
+
+      // Create image element
       const img = new Image();
       img.onload = function () {
-        // 隐藏 loading 元素
+        // Hide loading element
         loadingElement.style.display = "none";
+      };
+      img.onerror = function () {
+        img.src = "./asset/images/default.png"; // Default image on error
       };
       img.alt = el.title;
       img.title = el.title;
       img.src = el.url;
-      //将图片添加到link
+
+      // Add image to link
       alink.appendChild(img);
-      //到图片项容器到图片项容器
+      // Add link and loading element to image item container
       imageItem.appendChild(alink);
-      // 将 loading 和图片元素添加到图片项容器
       imageItem.appendChild(loadingElement);
-      //将图片项容器添加到图片显示区域
+
+      // Add image item container to gallery
       gallery.appendChild(imageItem);
     });
   }
 
-  // 刷新按钮点击事件
+  // Refresh button click event
   document
     .getElementById("refreshButton")
     .addEventListener("click", function () {
       showRandomImages();
     });
 
-  // 返回按钮点击事件
+  // Back button click event
   document.getElementById("backButton").addEventListener("click", function () {
-    window.location.href = "https://h-image.github.io"; // 返回主页面
+    window.location.href = "https://h-image.github.io"; // Return to main page
   });
 
-  // 切换夜间模式和白天模式
+  // Toggle dark mode and light mode
   const darkmode = document.querySelector(".darkmode-btn");
   darkmode.addEventListener("click", function () {
     document.body.classList.toggle("night-mode");
@@ -78,9 +85,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   });
 
-  // 向上滚动按钮
+  // Scroll to top button
   const scrollTopBtn = document.getElementById("scrollTopBtn");
-  // 当用户滚动页面时，显示或隐藏返回顶部按钮
+  // Show or hide the scroll to top button when scrolling
   window.addEventListener("scroll", function () {
     if (window.scrollY > 200) {
       scrollTopBtn.classList.add("show");
@@ -89,23 +96,24 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   });
 
-  // 当用户点击返回顶部按钮时，滚动到页面顶部
+  // Scroll to the top of the page when the button is clicked
   scrollTopBtn.addEventListener("click", function () {
     window.scrollTo({
       top: 0,
-      behavior: "smooth", // 平滑滚动
+      behavior: "smooth", // Smooth scrolling
     });
   });
 
-  // 加载语言
+  // Load language
   await loadLanguage();
-  // 初始加载时显示随机图片
+
+  // Display random images on initial load
   showRandomImages();
 });
 
 /**
- * 加载所有图片
- * @returns 图片
+ * Load all images
+ * @returns {Array} Images
  */
 async function loadPicture() {
   try {
@@ -114,7 +122,7 @@ async function loadPicture() {
     if (!datas) {
       datas = [];
     }
-    //loading非表示
+    // Hide loading
     document.querySelector(".loader-wrapper").style.display = "none";
     return datas;
   } catch (e) {
@@ -123,10 +131,10 @@ async function loadPicture() {
 }
 
 /**
- * 加载语言
+ * Load language
  */
 async function loadLanguage() {
-  // 获取用户的语言首选项
+  // Get user's preferred language
   let userLanguage = navigator.language || navigator.userLanguage;
   if (
     userLanguage !== "en" &&
@@ -137,11 +145,12 @@ async function loadLanguage() {
   }
   let html = document.getElementsByTagName("html");
   html[0].lang = userLanguage;
-  // 加载对应的 JSON 文件
+
+  // Load corresponding JSON file
   try {
     const response = await fetch(`asset/lang/${userLanguage}.json`);
     const data = await response.json();
-    // 将文本内容应用到页面上
+    // Apply the text content to the page
     document.getElementById("refreshButton").textContent = data.refresh;
     document.getElementById("backButton").textContent = data.back;
   } catch (e) {
