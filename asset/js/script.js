@@ -1,20 +1,20 @@
 document.addEventListener("DOMContentLoaded", async function () {
   showPageBtn();
-  // 图片数据数组，包含图片路径、标题和类别
+  // Array of image data, including image paths, titles, and categories
   const imageData = await loadPicture();
-  //每页显示的件数
+  // Number of items displayed per page
   const itemsPerPage = 10;
-  //当前页图片
+  // Current page images
   let currentImages = imageData ? imageData.slice() : imageData;
-  // 总页
+  // Total pages
   let totalPages = Math.ceil(currentImages?.length / itemsPerPage);
 
-  // 移动端当前页面
+  // Current page on mobile
   let mobileCurrentPage = 1;
 
   /**
-   *  PC版根据当前页数显示图片
-   * @param {*} currentPage 当前页面
+   * Display images based on the current page (PC version)
+   * @param {*} currentPage Current page number
    */
   function displayImages(currentPage) {
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -26,24 +26,24 @@ document.addEventListener("DOMContentLoaded", async function () {
       gallery.removeChild(gallery.firstChild);
     }
     pageImages.forEach((el) => {
-      //创建图片项容器
+      // Create image item container
       const imageItem = document.createElement("div");
       imageItem.classList.add("image-item");
-      // 创建 loading 元素
+      // Create loading element
       const loadingElement = document.createElement("div");
       loadingElement.classList.add("image-loading");
       loadingElement.textContent = "Loading...";
       loadingElement.style.display = "block";
-      //创建link
+      // Create link
       const alink = document.createElement("a");
       alink.href = el.detail_url;
       alink.target = "_blank";
       alink.rel = "noopener noreferrer nofollow";
 
-      // 创建图片元素
+      // Create image element
       const img = new Image();
       img.onload = function () {
-        // 隐藏 loading 元素
+        // Hide loading element
         loadingElement.style.display = "none";
       };
       img.onerror = function () {
@@ -52,16 +52,16 @@ document.addEventListener("DOMContentLoaded", async function () {
       img.alt = el.title;
       img.title = el.title;
       img.src = el.url;
-      //将图片添加到link
+      // Add image to link
       alink.appendChild(img);
-      //到图片项容器到图片项容器
+      // Add image item container to image item container
       imageItem.appendChild(alink);
-      // 将 loading 和图片元素添加到图片项容器
+      // Add loading and image elements to image item container
       imageItem.appendChild(loadingElement);
-      //将图片项容器添加到图片显示区域
+      // Add image item container to image display area
       gallery.appendChild(imageItem);
     });
-    // 页面设置
+    // Page settings
     const currentPageElement = document.getElementById("currentPage");
     currentPageElement.textContent = currentPage;
     const totalpageElement = document.getElementById("totalpage");
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   /**
-   * 更新URL中的page参数
+   * Update the page parameter in the URL
    */
   function updateURL(page) {
     const newUrl = window.location.origin + "?page=" + page;
@@ -77,8 +77,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   /**
-   * 翻页操作时更新URL
-   * @param currentPage 当前的页面
+   * Update the URL when flipping pages
+   * @param currentPage Current page number
    */
   function displayImagesAndUpdateURL(currentPage) {
     displayImages(currentPage);
@@ -86,10 +86,10 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   /**
-   * PC版下的获取当前页面
+   * Get the current page number (PC version)
    */
   function getCurrentPage() {
-    // 从URL中获取page参数，如果没有则默认为1
+    // Get the page parameter from the URL, default to 1 if not found
     const urlParams = new URLSearchParams(window.location.search);
     let currentPage = parseInt(urlParams.get("page")) || 1;
     if (isNaN(currentPage)) {
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     return currentPage;
   }
 
-  // 切换夜间模式和白天模式
+  // Toggle between dark mode and light mode
   const darkmode = document.querySelector(".darkmode-btn");
   darkmode.addEventListener("click", function () {
     document.body.classList.toggle("night-mode");
@@ -116,21 +116,21 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   });
 
-  // 搜索功能
+  // Search function
   const searchButton = document.getElementById("searchButton");
   const searchInput = document.getElementById("searchInput");
-  // 添加enter检索事件
+  // Add enter key event for search
   searchInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
       performSearch();
     }
   });
 
-  //检索按钮按下事件
+  // Search button click event
   searchButton.addEventListener("click", performSearch);
 
   /**
-   * 检索函数
+   * Search function
    */
   function performSearch() {
     const searchTerm = searchInput.value.toLowerCase();
@@ -149,16 +149,16 @@ document.addEventListener("DOMContentLoaded", async function () {
     displayImagesAndUpdateURL(1);
   }
 
-  // 点击第一页按钮
+  // Click first page button
   const firstPageButton = document.getElementById("firstPage");
   firstPageButton.addEventListener("click", function () {
     displayImagesAndUpdateURL(1);
   });
 
-  // 点击上一页按钮
+  // Click previous page button
   const prevPageButton = document.getElementById("prevPage");
   prevPageButton.addEventListener("click", function () {
-    // 获取当前页数
+    // Get the current page number
     const currentPage = parseInt(
       document.getElementById("currentPage").textContent
     );
@@ -167,10 +167,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   });
 
-  // 点击下一页按钮
+  // Click next page button
   const nextPageButton = document.getElementById("nextPage");
   nextPageButton.addEventListener("click", function () {
-    // 获取当前页数和总页数
+    // Get the current page number and total pages
     const currentPage = parseInt(
       document.getElementById("currentPage").textContent
     );
@@ -180,13 +180,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   });
 
-  // 点击最后一页按钮
+  // Click last page button
   const lastPageButton = document.getElementById("lastPage");
   lastPageButton.addEventListener("click", function () {
     displayImagesAndUpdateURL(totalPages);
   });
 
-  //直接修改页数
+  // Directly modify the page number
   const currentPageElement = document.getElementById("currentPage");
   currentPageElement.addEventListener("input", function (event) {
     let currentPage;
@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     displayImagesAndUpdateURL(currentPage);
   });
 
-  // 监听键盘事件
+  // Listen for keyboard events
   document.addEventListener("keydown", function (event) {
     const currentPage = parseInt(
       document.getElementById("currentPage").textContent
@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   });
 
-  // 加载更多按钮点击事件
+  // Load more button click event
   const loadMoreBtn = document.getElementById("loadMoreBtn");
   loadMoreBtn.addEventListener("click", function () {
     mobileCurrentPage++;
@@ -228,24 +228,24 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const gallery = document.querySelector(".image-gallery");
     pageImages.forEach((el) => {
-      //创建图片项容器
+      // Create image item container
       const imageItem = document.createElement("div");
       imageItem.classList.add("image-item");
-      // 创建 loading 元素
+      // Create loading element
       const loadingElement = document.createElement("div");
       loadingElement.classList.add("image-loading");
       loadingElement.textContent = "Loading...";
       loadingElement.style.display = "block";
-      //创建link
+      // Create link
       const alink = document.createElement("a");
       alink.href = el.detail_url;
       alink.target = "_blank";
       alink.rel = "noopener noreferrer nofollow";
 
-      // 创建图片元素
+      // Create image element
       const img = new Image();
       img.onload = function () {
-        // 隐藏 loading 元素
+        // Hide loading element
         loadingElement.style.display = "none";
       };
       img.onerror = function () {
@@ -254,32 +254,32 @@ document.addEventListener("DOMContentLoaded", async function () {
       img.alt = el.title;
       img.title = el.title;
       img.src = el.url;
-      //将图片添加到link
+      // Add image to link
       alink.appendChild(img);
-      //到图片项容器到图片项容器
+      // Add image item container to image item container
       imageItem.appendChild(alink);
-      // 将 loading 和图片元素添加到图片项容器
+      // Add loading and image elements to image item container
       imageItem.appendChild(loadingElement);
-      //将图片项容器添加到图片显示区域
+      // Add image item container to image display area
       gallery.appendChild(imageItem);
     });
 
-    // 判断是否还有更多图片可以加载，如果没有，隐藏加载更多按钮
+    // Check if there are more images to load, hide the load more button if none
     if (itemsPerPage > pageImages.length) {
       loadMoreBtn.style.display = "none";
     }
   });
 
-  // 随机按钮点击事件
+  // Random button click event
   const randomButton = document.getElementById("randomButton");
   randomButton.addEventListener("click", function () {
     window.location.href =
-      "https://h-image.github.io/random.html"; // 返回主页面
+      "https://h-image.github.io/random.html"; // Return to main page
   });
 
-  // 向上滚动按钮
+  // Scroll to top button
   const scrollTopBtn = document.getElementById("scrollTopBtn");
-  // 当用户滚动页面时，显示或隐藏返回顶部按钮
+  // Show or hide the scroll to top button when scrolling
   window.addEventListener("scroll", function () {
     if (window.scrollY > 200) {
       scrollTopBtn.classList.add("show");
@@ -288,23 +288,23 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   });
 
-  // 当用户点击返回顶部按钮时，滚动到页面顶部
+  // Scroll to the top of the page when the button is clicked
   scrollTopBtn.addEventListener("click", function () {
     window.scrollTo({
       top: 0,
-      behavior: "smooth", // 平滑滚动
+      behavior: "smooth", // Smooth scrolling
     });
   });
 
-  // 加载语言
+  // Load language
   await loadLanguage();
-  // 初始化显示图片
+  // Initialize image display
   displayImagesAndUpdateURL(getCurrentPage());
 });
 
 /**
- * 加载所有图片
- * @returns 图片
+ * Load all images
+ * @returns images
  */
 async function loadPicture() {
   try {
@@ -313,7 +313,7 @@ async function loadPicture() {
     if (!datas) {
       datas = [];
     }
-    //loading非表示
+    // Hide loading
     document.querySelector(".loader-wrapper").style.display = "none";
     return datas;
   } catch (e) {
@@ -322,10 +322,10 @@ async function loadPicture() {
 }
 
 /**
- * 加载语言
+ * Load language
  */
 async function loadLanguage() {
-  // 获取用户的语言首选项
+  // Get the user's preferred language
   let userLanguage = navigator.language || navigator.userLanguage;
   if (
     userLanguage !== "en" &&
@@ -336,11 +336,11 @@ async function loadLanguage() {
   }
   let html = document.getElementsByTagName("html");
   html[0].lang = userLanguage;
-  // 加载对应的 JSON 文件
+  // Load the corresponding JSON file
   try {
     const response = await fetch(`asset/lang/${userLanguage}.json`);
     const data = await response.json();
-    // 将文本内容应用到页面上
+    // Apply the text content to the page
     document.getElementById("searchButton").textContent = data.search;
     document.getElementById("firstPage").textContent = data.first_page;
     document.getElementById("prevPage").textContent = data.prev_page;
@@ -353,7 +353,7 @@ async function loadLanguage() {
 }
 
 /**
- * 显示翻页按钮
+ * Show pagination buttons
  */
 function showPageBtn() {
   if (isMobile()) {
@@ -374,8 +374,8 @@ function showPageBtn() {
 }
 
 /**
- * 判断是否是移动端
- * @returns 移动端flg
+ * Determine if it is a mobile device
+ * @returns mobile device flag
  */
 function isMobile() {
   var userAgent = navigator.userAgent;
