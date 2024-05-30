@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   // Randomly select 10 images
   function getRandomImages() {
     const randomImages = [];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 24; i++) {
       const randomIndex = Math.floor(Math.random() * imageData.length);
       randomImages.push(imageData[randomIndex]);
     }
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", async function () {
  */
 async function loadPicture() {
   try {
-    const response = await fetch(`raw/datas.json`);
+    const response = await fetch(`https://h-image.github.io/raw/datas.json`);
     const datas = await response.json();
     if (!datas) {
       datas = [];

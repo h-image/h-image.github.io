@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   // Array of image data, including image paths, titles, and categories
   const imageData = await loadPicture();
   // Number of items displayed per page
-  const itemsPerPage = 50;
+  const itemsPerPage = 24;
   // Current page images
   let currentImages = imageData ? imageData.slice() : imageData;
   // Total pages
@@ -308,7 +308,7 @@ document.addEventListener("DOMContentLoaded", async function () {
  */
 async function loadPicture() {
   try {
-    const response = await fetch(`raw/datas.json`);
+    const response = await fetch(`https://h-image.github.io/raw/datas.json`);
     const datas = await response.json();
     if (!datas) {
       datas = [];
