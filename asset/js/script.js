@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   // Array of image data, including image paths, titles, and categories
   const imageData = await loadPicture();
   // Number of items displayed per page
-  const itemsPerPage = 10;
+  const itemsPerPage = 50;
   // Current page images
   let currentImages = imageData ? imageData.slice() : imageData;
   // Total pages
